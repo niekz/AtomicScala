@@ -17,6 +17,18 @@ object AtomicScala3PatternMatching {
 
     oneOrTheOther(v == v.reverse) is "True!"
     oneOrTheOther(v2 == v2.reverse) is "It's false"
+
+    forecast(100) is "Sunny"
+    forecast(80) is "Mostly Sunny"
+    forecast(50) is "Partly Sunny"
+    forecast(20) is "Mostly Cloudy"
+    forecast(0) is "Cloudy"
+    forecast(15) is "Unknown"
+
+    val sunnyData = Vector(100, 80, 50, 20, 0, 15)
+    for (x <- sunnyData){
+      println(forecast(x))
+    }
   }
 
   def matchColor(color: String): String = {
@@ -46,7 +58,14 @@ object AtomicScala3PatternMatching {
     }
   }
 
-
-
-
+  def forecast(n: Int): String = {
+    n match {
+      case 100 => "Sunny"
+      case 80 => "Mostly Sunny"
+      case 50 => "Partly Sunny"
+      case 20 => "Mostly Cloudy"
+      case 0 => "Cloudy"
+      case _ => "Unknown"
+    }
+  }
 }
