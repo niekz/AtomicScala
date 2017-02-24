@@ -91,7 +91,9 @@ object AtomicScala3ClassArguments {
 
   // Other way around wont work either. Same reason.
 
+  class Cup2(){
 
+  }
 
 
 
