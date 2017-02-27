@@ -27,10 +27,10 @@ object AtomicScala3Overloading {
 
   class OverloadingExercises{
     def f(): Int = { 0 }
-    def f(n: Int) = { n }
-    def f(n: Int, m: Int) = { f(n) + f(m) }
-    def f(n: Int, m: Int, o: Int) = { o + f(n, m)}
-    def f(n: Int, m: Int, o: Int, p: Int) = { p + f(n, m, o) }
+    def f(n: Int): Int = { n }
+    def f(n: Int, m: Int): Int = { f(n) + f(m) }
+    def f(n: Int, m: Int, o: Int): Int = { o + f(n, m)}
+    def f(n: Int, m: Int, o: Int, p: Int): Int = { p + f(n, m, o) }
   }
 
 
