@@ -60,8 +60,6 @@ object AtomicScala3AuxiliaryConstructors {
     def wash(bleach: Int, softener: Int): String = {
       "Wash used " + bleach + " bleach and " + softener + " fabric softener"
     }
-
-
   }
 
 
