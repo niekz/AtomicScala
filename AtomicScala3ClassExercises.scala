@@ -12,7 +12,16 @@ object AtomicScala3ClassExercises {
     c.height is 10
     c.width = 19
     c.width is 19
+
+    val info = new Info("stuff", "Something")
+    info.name is "stuff"
+    info.description is "Something"
+    info.description = "Something else"
+    info.description is "Something else"
   }
 
   class Dimension(var height: Int, var width: Int)
+
+  class Info(val name: String, var description: String)
+
 }
