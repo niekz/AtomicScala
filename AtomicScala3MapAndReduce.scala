@@ -32,8 +32,8 @@ object AtomicScala3MapAndReduce {
     sum is 1111
 
     def sumIt(n: Int*): Int = n.reduce(_ + _)
+    //def sumIt(n: Int*): Int = n.sum // can also be done this way. obviously not what they asked. but yeah.
     sumIt(1, 2, 3) is 6
     sumIt(45, 45, 45, 60) is 195
-
   }
 }
