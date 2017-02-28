@@ -18,10 +18,22 @@ object AtomicScala3ClassExercises {
     info.description is "Something"
     info.description = "Something else"
     info.description is "Something else"
+
+    val t1 = new SimpleTime(10, 30)
+    val t2 = new SimpleTime(9, 30)
+    val st = t1.subtract(t2)
+    st.hours is 1
+    st.minutes is 0
   }
 
   class Dimension(var height: Int, var width: Int)
 
-  class Info(val name: String, var description: String)
+  class Info(var name: String, var description: String)   //name was a val in q2, and changed to a var in q3
+
+  class SimpleTime(val hours: Int = 0, val minutes: Int = 0){
+    def subtract(time: SimpleTime): SimpleTime = {
+      new SimpleTime(minutes = this.minutes - time.minutes, hours = this.hours - time.hours)
+    }
+  }
 
 }
