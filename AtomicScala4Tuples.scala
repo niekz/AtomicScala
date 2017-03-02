@@ -68,8 +68,6 @@ object AtomicScala4Tuples {
     val (heat2, moisture2) = weather(27, 55)
     heat2 is "Cold"
     moisture2 is "Damp"
-
-
   }
 
   case class ReturnBlob(data: Double, info: String)
