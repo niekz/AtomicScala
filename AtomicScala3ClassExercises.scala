@@ -55,19 +55,17 @@ object AtomicScala3ClassExercises {
 
   class SimpleTime(val hours: Int = 0, val minutes: Int){
     def subtract(time: SimpleTime): SimpleTime = {
-      if(this.minutes - time.minutes > 0)
-        new SimpleTime(minutes = this.minutes - time.minutes, hours = this.hours - time.hours)
-      else
-        new SimpleTime(minutes = 60 + this.minutes - time.minutes, hours = this.hours - time.hours)
+      val minutesT1: Int = minutes + (hours*60)
+      val minutesT2: Int = time.minutes + (time.hours*60)
+      new SimpleTime((minutesT1-minutesT2)/60, (minutesT1-minutesT2)%60)
     }
   }
 
   class SimpleTimeDefault(val hours: Int = 0, val minutes: Int = 0){
     def subtract(time: SimpleTimeDefault): SimpleTimeDefault = {
-      if(this.minutes - time.minutes > 0)
-        new SimpleTimeDefault(minutes = this.minutes - time.minutes, hours = this.hours - time.hours)
-      else
-        new SimpleTimeDefault(minutes = 60 + this.minutes - time.minutes, hours = this.hours - time.hours)
+      val minutesT1: Int = minutes + (hours*60)
+      val minutesT2: Int = time.minutes + (time.hours*60)
+      new SimpleTimeDefault((minutesT1-minutesT2)/60, (minutesT1-minutesT2)%60)
     }
   }
 
@@ -77,10 +75,9 @@ object AtomicScala3ClassExercises {
     }
 
     def subtract(time: SimpleTimeAux): SimpleTimeAux = {
-      if(this.minutes - time.minutes > -1)
-        new SimpleTimeAux(minutes = this.minutes - time.minutes, hours = this.hours - time.hours)
-      else
-        new SimpleTimeAux(minutes = 60 + this.minutes - time.minutes, hours = this.hours - time.hours)
+      val minutesT1: Int = minutes + (hours*60)
+      val minutesT2: Int = time.minutes + (time.hours*60)
+      new SimpleTimeAux((minutesT1-minutesT2)/60, (minutesT1-minutesT2)%60)
     }
   }
 
