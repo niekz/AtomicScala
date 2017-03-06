@@ -110,10 +110,16 @@ object AtomicScala4Traits {
     val part2 = 2.71828
   }
 
-  class EnergySource
+
 
   trait BatteryPower {
-    val charge: Int
+    def monitor(i: Int): String = {
+      i match {
+        case n: Int if(n < 20) => "red"
+        case n: Int if(n >= 20 && n < 40) => "yellow"
+        case n: Int if(n >= 40) => "green"
+      }
+    }
   }
 
   def main(args: Array[String]): Unit  ={
@@ -137,5 +143,21 @@ object AtomicScala4Traits {
     C.n is 27
 
     operation(new Implementation) is 44.71828
+
+    class Battery extends BatteryPower
+    val battery = new Battery
+    battery.monitor(80) is "green"
+    battery.monitor(30) is "yellow"
+    battery.monitor(10) is "red"
+
+    class Toy
+    class BatteryPoweredToy extends Toy
+      with BatteryPower
+
+    val toy = new BatteryPoweredToy
+    toy.monitor(50) is "green"
+
+    val toy2 = new Toy with BatteryPower
+    toy2.monitor(50) is "green"
   }
 }
