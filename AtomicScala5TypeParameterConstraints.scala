@@ -12,8 +12,8 @@ object AtomicScala5TypeParameterConstraints {
     import AtomicScala5TypeParameterConstraints.Bounciness._
     import AtomicScala5TypeParameterConstraints.Flexibility._
 
-    case class BouncingBall(res: Resilience) extends Spring[Bounciness]
-    BouncingBall(level2) is "BouncingBall(level2)"
+    //case class BouncingBall(res: Resilience) extends Spring[Bounciness]
+    //BouncingBall(level2) is "BouncingBall(level2)"
 
     case class FlexingWall(res: Flexibility) extends Spring[Flexibility]
 
@@ -53,4 +53,52 @@ object AtomicScala5TypeParameterConstraints {
   class CallF[T <: WithF](t: T) {
     def g(n: Int) = t.f(n)
   }
+
+  def CallF[T <: WithF](n: Int, t: T) = {
+    t.f(n)
+  }
+
+  trait Building
+  trait Room
+  trait Storage
+  trait Sink
+  trait Storable
+  trait Cleanable
+  trait Store[T <: Storable]
+  trait Cook[T]
+  trait Clean[T <: Cleanable]
+  trait Food extends Store[Food] with Storable
+    with Clean[Food] with Cleanable
+    with Cook[Food]
+  trait Utensils extends Store[Utensils] with Storable
+    with Clean[Utensils] with Cleanable
+    with Cook[Utensils]
+
+  trait Kitchen extends Room {
+    val storage: Storage
+    val sinks: Vector[Sink]
+    val food: Food
+    val utensils: Utensils
+  }
+
+  trait House extends Building {
+    val kitchens: Vector[Kitchen]
+  }
+
+  object EnumUtensils extends Enumeration {
+    case class _Val() extends Val
+      with Utensils
+    type EnumUtensils = _Val
+    val utensils1, utensils2, utensils3 = _Val()
+  }
+
+  object EnumFood extends Enumeration {
+    case class _Val() extends Val
+      with Utensils
+    type EnumFood = _Val
+    val food1, food2, food3 = _Val()
+  }
+
+
+
 }
