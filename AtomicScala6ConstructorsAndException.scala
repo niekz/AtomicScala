@@ -30,8 +30,26 @@ object CodeListing {
   }
 }
 
+class CodeListingTester(
+  makeList: String => IndexedSeq[String]) {
+  makeList("CodeListingTester.scala")(4) is "class CodeListingTester("
+  makeList("NotAFile.scala")(0) is "File Not Found: NotAFile.scala"
+  makeList("NotAScalaFile.txt")(0) is "NotAScalaFile.txt doesn't end with '.scala'"
+  makeList(null)(0) is "Error: Null file name"
+}
+
+class CodeListingTester1(makeList: String => IndexedSeq[String]) {
+  val l = makeList("/home/johann/IdeaProjects/AtomicScala/src/AtomicScala6ConstructorsAndException.scala")
+  var count = 1
+  for(i <- l) {
+    println(count + "\t: " + i)
+    count += 1
+  }
+}
+
 object AtomicScala6ConstructorsAndException {
   def main(args: Array[String]): Unit = {
+    new CodeListingTester1(CodeListing.apply)
 
   }
 }
